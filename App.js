@@ -16,6 +16,7 @@ export default class App extends React.Component {
     const { text } = this.state
 
     if(text.trim() !== '') {
+      this.setState({ error: '' })
       this.handleSubmit()
     } else {
       this.setState({ error: 'Please enter a concept with at least 1 letter.' })
@@ -61,7 +62,11 @@ export default class App extends React.Component {
           onChangeText={(text) => this.setState({ text })}
           value={text}
         />
-        <Text>{this.state.error}</Text>
+
+        <View style={styles.errorContainer}>
+          <Text style={styles.errorText}>{this.state.error}</Text>
+        </View>
+
         <View style={styles.submitButton}>
           <Button 
             title='Add Concept'
@@ -78,6 +83,18 @@ export default class App extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  errorContainer: {
+    height: 35,
+    width: 200,
+    display: 'flex',
+    justifyContent: 'center',
+    margin: 3
+  },
+  errorText: {
+    textAlign: 'center',
+    fontSize: 12,
+    color: 'red',
+  },
   conceptTitle: {
     fontSize: 20,
     color: 'red',    
@@ -87,9 +104,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   conceptContainer: {
-    borderColor: 'blue',
-    borderWidth: 2,
-    height: 500,
+    height: '100%',
     width: 200
   },
   concepts: {
@@ -105,9 +120,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     paddingTop: 100,
-    borderColor: 'pink',
-    borderWidth: 2,
-    margin: 10
   },
   conceptInput: {
     height: 40,
@@ -116,7 +128,8 @@ const styles = StyleSheet.create({
     color: '#000',
     paddingLeft: 10,
     borderColor: 'black',
-    borderWidth: 2
+    borderWidth: 1,
+    borderRadius: 5
   },
   submitButton: {
     display: 'flex',
@@ -125,6 +138,7 @@ const styles = StyleSheet.create({
     width: 200,
     fontSize: 40,
     color: '#fff',
-    backgroundColor: '#00adff'
+    backgroundColor: '#00adff',
+    borderRadius: 5
   }
 });
