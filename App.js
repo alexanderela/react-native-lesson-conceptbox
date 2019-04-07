@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TextInput, Text, View, Button } from 'react-native';
+import { StyleSheet, TextInput, Text, View, TouchableOpacity } from 'react-native';
 const uuidv4 = require('uuid/v4');
 
 export default class App extends React.Component {
@@ -35,12 +35,16 @@ export default class App extends React.Component {
   displayConcepts = () => {
     return this.state.concepts.map(concept => {
       const { text, id } = concept
-      return <View key={uuidv4()} style={styles.conceptTitle}>
-              <Text>{text}</Text>
-              <Button
-                title='X'
-                onPress={() => this.removeConcept(id)} 
-              />
+      return <View key={uuidv4()} style={styles.concepts}>
+              <TouchableOpacity 
+                onPress={() => this.removeConcept(id)}
+                style={styles.deleteButton}
+               >
+                <Text style={styles.deleteButtonText}>x</Text>
+              </TouchableOpacity>
+              <View style={styles.conceptContent}>
+                <Text style={styles.conceptText}>{text}</Text>
+              </View>
           </View>
     })
   }
@@ -66,14 +70,12 @@ export default class App extends React.Component {
         <View style={styles.errorContainer}>
           <Text style={styles.errorText}>{this.state.error}</Text>
         </View>
-
-        <View style={styles.submitButton}>
-          <Button 
-            title='Add Concept'
-            onPress={this.checkInput}
-            color='#fff'
-          />
-        </View>
+        <TouchableOpacity 
+          onPress={this.checkInput}
+          style={styles.submitButton}
+         >
+          <Text style={styles.submitButtonText}>Add Concept</Text>
+        </TouchableOpacity>
         <View style={styles.conceptContainer}>
           {this.displayConcepts()}
         </View>
@@ -83,36 +85,73 @@ export default class App extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  deleteButtonText: {
+    fontSize: 18,
+    fontWeight: 'bold'
+  },
+  deleteButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 30,
+    width: 30,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+  },
+  submitButtonText: {
+    fontSize: 18,
+    color: '#fff',
+  },
+  submitButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 50,
+    width: 200,
+    backgroundColor: '#00adff',
+    borderRadius: 5
+  },
+  concepts: {
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    width: 300,
+    height: 100,
+    color: '#fff',
+    backgroundColor: '#f15432',
+    paddingTop: 10,    
+    paddingBottom: 20,    
+    paddingLeft: 20,    
+    paddingRight: 20,    
+    marginBottom: 20,
+    borderRadius: 10
+  },
   errorContainer: {
     height: 35,
     width: 200,
     display: 'flex',
     justifyContent: 'center',
-    margin: 3
+    margin: 8
   },
   errorText: {
     textAlign: 'center',
     fontSize: 12,
     color: 'red',
   },
-  conceptTitle: {
+  conceptText: {
+    color: '#fff',
+    fontSize: 18,
+  },
+  conceptContent: {
+    display: 'flex',
+    alignItems: 'flex-start',
+    // justifyContent: 'center',
     fontSize: 20,
-    color: 'red',    
-    width: 200,
-    height: 100,
-    borderColor: 'orange',
-    borderWidth: 2,
+    width: '100%',    
+    height: 30,
   },
   conceptContainer: {
     height: '100%',
-    width: 200
-  },
-  concepts: {
-    height: 50,
-    width: 200,
-    fontSize: 40,
-    color: '#fff',
-    backgroundColor: 'red'    
+    width: 300,
+    padding: 5,
+    marginTop: 30
   },
   container: {
     flex: 1,
@@ -131,14 +170,4 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5
   },
-  submitButton: {
-    display: 'flex',
-    justifyContent: 'center',
-    height: 50,
-    width: 200,
-    fontSize: 40,
-    color: '#fff',
-    backgroundColor: '#00adff',
-    borderRadius: 5
-  }
 });
