@@ -32,10 +32,22 @@ export default class App extends React.Component {
 
   displayConcepts = () => {
     return this.state.concepts.map(concept => {
+      const { text, id } = concept
       return <View key={uuidv4()} style={styles.conceptTitle}>
-              <Text>{concept.text}</Text>
+              <Text>{text}</Text>
+              <Button
+                title='X'
+                onPress={() => this.removeConcept(id)} 
+              />
           </View>
     })
+  }
+
+  removeConcept = (id) => {
+    const concepts = this.state.concepts.filter(concept => {
+      return concept.id !== id
+    })
+    this.setState({ concepts })
   }
 
   render() {
