@@ -24,24 +24,22 @@ export default class App extends React.Component {
 
   handleSubmit = () => {
     const { text } = this.state
-    const newConcept = { concept: text, id: uuidv4() }
+    const newConcept = { text: text, id: uuidv4() }
     const concepts = [...this.state.concepts, newConcept]
     this.setState({ concepts })
     this.displayConcepts()
   }
 
   displayConcepts = () => {
-    const allConcepts = this.state.concepts.map(concept => {
+    return this.state.concepts.map(concept => {
       return <View key={uuidv4()} style={styles.conceptTitle}>
-              <Text>{concept.title}</Text>
+              <Text>{concept.text}</Text>
           </View>
     })
-    return allConcepts
   }
 
   render() {
     const { text, concepts, error } = this.state;
-    const allConcepts = this.displayConcepts()
 
     return (
       <View style={styles.container}>
@@ -58,7 +56,7 @@ export default class App extends React.Component {
           />
         </View>
         <View style={styles.conceptContainer}>
-          {allConcepts}
+          {this.displayConcepts()}
         </View>
       </View>
     );
@@ -70,7 +68,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: 'red',    
     width: 200,
-    height: 100
+    height: 100,
+    borderColor: 'orange',
+    borderWidth: 2,
   },
   conceptContainer: {
     borderColor: 'blue',
