@@ -26,7 +26,8 @@ export default class App extends React.Component {
     const { text } = this.state
     const newConcept = { text: text, id: uuidv4() }
     const concepts = [...this.state.concepts, newConcept]
-    this.setState({ concepts })
+
+    this.setState({ concepts, text: '' })
     this.displayConcepts()
   }
 
@@ -58,6 +59,7 @@ export default class App extends React.Component {
         <TextInput 
           style={styles.conceptInput}
           onChangeText={(text) => this.setState({ text })}
+          value={text}
         />
         <Text>{this.state.error}</Text>
         <View style={styles.submitButton}>
@@ -108,14 +110,17 @@ const styles = StyleSheet.create({
     margin: 10
   },
   conceptInput: {
-    height: 30,
+    height: 40,
     width: 200,
     fontSize: 20,
-    color: 'red',
+    color: '#000',
+    paddingLeft: 10,
     borderColor: 'black',
     borderWidth: 2
   },
   submitButton: {
+    display: 'flex',
+    justifyContent: 'center',
     height: 50,
     width: 200,
     fontSize: 40,
