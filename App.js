@@ -61,23 +61,33 @@ export default class App extends React.Component {
 
     return (
       <View style={styles.container}>
-        <TextInput 
-          style={styles.conceptInput}
-          onChangeText={(text) => this.setState({ text })}
-          value={text}
-        />
-
-        <View style={styles.errorContainer}>
-          <Text style={styles.errorText}>{this.state.error}</Text>
+        <View style={styles.toolbar}>
+          <Text style={styles.toolbarTextConcept}>Concept
+            <Text style={styles.toolbarTextBox}>Box</Text>
+          </Text>
         </View>
-        <TouchableOpacity 
-          onPress={this.checkInput}
-          style={styles.submitButton}
-         >
-          <Text style={styles.submitButtonText}>Add Concept</Text>
-        </TouchableOpacity>
-        <View style={styles.conceptContainer}>
-          {this.displayConcepts()}
+        <View style={styles.content}>
+          <View style={styles.instructions}>
+            <Text style={styles.instructionsText}>Enter your concept below:</Text>
+          </View>
+          <View style={styles.errorContainer}>
+            <Text style={styles.errorText}>{this.state.error}</Text>
+          </View>
+          <TextInput 
+            style={styles.conceptInput}
+            onChangeText={(text) => this.setState({ text })}
+            value={text}
+          />
+
+          <TouchableOpacity 
+            onPress={this.checkInput}
+            style={styles.submitButton}
+           >
+            <Text style={styles.submitButtonText}>Add Concept</Text>
+          </TouchableOpacity>
+          <View style={styles.conceptContainer}>
+            {this.displayConcepts()}
+          </View>
         </View>
       </View>
     );
@@ -85,6 +95,39 @@ export default class App extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  instructions: {},
+  instructionsText: {
+    fontSize: 20,
+    color: '#050505'
+  },
+  content: {
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    paddingTop: 80,
+    backgroundColor: '#eaeef0'
+  },
+  toolbar: {
+    backgroundColor: '#7fc244',
+    height: 100,
+    width: '100%',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    paddingBottom: 6
+  },
+  toolbarTextConcept: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: '#fff'
+  },
+  toolbarTextBox: {
+    fontSize: 30,
+    fontWeight: 'normal',
+    color: '#f15432'
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
   deleteButtonText: {
     fontSize: 18,
     fontWeight: 'bold'
@@ -92,10 +135,10 @@ const styles = StyleSheet.create({
   deleteButton: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: 30,
-    width: 30,
+    height: 40,
+    width: 40,
     backgroundColor: '#fff',
-    borderRadius: 5,
+    borderRadius: 30,
   },
   submitButtonText: {
     fontSize: 18,
@@ -106,8 +149,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 50,
     width: 200,
-    backgroundColor: '#00adff',
-    borderRadius: 5
+    backgroundColor: '#1b9aaa',
+    borderRadius: 5,
+    marginTop: 30
   },
   concepts: {
     justifyContent: 'space-between',
@@ -142,7 +186,6 @@ const styles = StyleSheet.create({
   conceptContent: {
     display: 'flex',
     alignItems: 'flex-start',
-    // justifyContent: 'center',
     fontSize: 20,
     width: '100%',    
     height: 30,
@@ -153,21 +196,14 @@ const styles = StyleSheet.create({
     padding: 5,
     marginTop: 30
   },
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    paddingTop: 100,
-  },
   conceptInput: {
     height: 40,
-    width: 200,
+    width: 300,
     fontSize: 20,
-    color: '#000',
+    color: '#050505',
     paddingLeft: 10,
-    borderColor: 'black',
-    borderWidth: 1,
-    borderRadius: 5
+    borderRadius: 5,
+    backgroundColor: '#fff',
+    marginTop: 10
   },
 });
