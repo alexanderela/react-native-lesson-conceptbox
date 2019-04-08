@@ -78,7 +78,6 @@ export default class App extends React.Component {
             onChangeText={(text) => this.setState({ text })}
             value={text}
           />
-
           <TouchableOpacity 
             onPress={this.checkInput}
             style={styles.submitButton}
@@ -95,115 +94,114 @@ export default class App extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  instructions: {},
   instructionsText: {
+    color: '#050505',
     fontSize: 20,
-    color: '#050505'
   },
   content: {
     alignItems: 'center',
+    backgroundColor: '#eaeef0',
     justifyContent: 'flex-start',
     paddingTop: 80,
-    backgroundColor: '#eaeef0'
   },
   toolbar: {
+    alignItems: 'center',
     backgroundColor: '#7fc244',
     height: 100,
-    width: '100%',
     justifyContent: 'flex-end',
-    alignItems: 'center',
-    paddingBottom: 6
+    paddingBottom: 6,
+    width: '100%',
   },
   toolbarTextConcept: {
+    color: '#fff',
     fontSize: 30,
     fontWeight: 'bold',
-    color: '#fff'
   },
   toolbarTextBox: {
+    color: '#f15432',
     fontSize: 30,
     fontWeight: 'normal',
-    color: '#f15432'
   },
   container: {
-    flex: 1,
     backgroundColor: '#fff',
+    flex: 1,
   },
   deleteButtonText: {
     fontSize: 18,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   deleteButton: {
-    justifyContent: 'center',
     alignItems: 'center',
-    height: 40,
-    width: 40,
     backgroundColor: '#fff',
     borderRadius: 30,
+    height: 40,
+    justifyContent: 'center',
+    width: 40,
   },
   submitButtonText: {
-    fontSize: 18,
     color: '#fff',
+    fontSize: 18,
   },
   submitButton: {
-    justifyContent: 'center',
     alignItems: 'center',
-    height: 50,
-    width: 200,
     backgroundColor: '#1b9aaa',
     borderRadius: 5,
-    marginTop: 30
+    height: 50,
+    justifyContent: 'center',
+    marginTop: 30,
+    width: 200,
   },
   concepts: {
-    justifyContent: 'space-between',
     alignItems: 'flex-end',
-    width: 300,
-    height: 100,
-    color: '#fff',
     backgroundColor: '#f15432',
-    paddingTop: 10,    
+    borderRadius: 10,
+    color: '#fff',
+    height: 100,
+    justifyContent: 'space-between',
+    marginBottom: 20,
     paddingBottom: 20,    
     paddingLeft: 20,    
     paddingRight: 20,    
-    marginBottom: 20,
-    borderRadius: 10
+    paddingTop: 10,    
+    width: 300,
   },
   errorContainer: {
-    height: 35,
-    width: 200,
     display: 'flex',
+    height: 35,
     justifyContent: 'center',
-    margin: 8
+    margin: 8,
+    width: 200,
   },
   errorText: {
-    textAlign: 'center',
-    fontSize: 12,
     color: 'red',
+    fontSize: 12,
+    textAlign: 'center',
   },
   conceptText: {
     color: '#fff',
     fontSize: 18,
   },
   conceptContent: {
-    display: 'flex',
     alignItems: 'flex-start',
+    display: 'flex',
     fontSize: 20,
-    width: '100%',    
     height: 30,
+    width: '100%',    
   },
   conceptContainer: {
     height: '100%',
-    width: 300,
+    marginTop: 30,
     padding: 5,
-    marginTop: 30
+    width: 300,
   },
   conceptInput: {
-    height: 40,
-    width: 300,
-    fontSize: 20,
-    color: '#050505',
-    paddingLeft: 10,
-    borderRadius: 5,
     backgroundColor: '#fff',
-    marginTop: 10
+    borderRadius: 5,
+    color: '#050505',
+    fontSize: 20,
+    height: 40,
+    marginTop: 10,
+    paddingLeft: 10,
+    width: 300,
   },
 });
