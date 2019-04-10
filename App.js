@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { StyleSheet, TextInput, Text, View, TouchableOpacity } from 'react-native';
 const uuidv4 = require('uuid/v4');
+// import InputForm from './src/InputForm/InputForm.js';
+// import ConceptContainer from './src/ConceptContainer/ConceptContainer.js';
 
-export default class App extends React.Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,15 +37,23 @@ export default class App extends React.Component {
   displayConcepts = () => {
     return this.state.concepts.map(concept => {
       const { text, id } = concept
-      return <View key={uuidv4()} style={styles.concepts}>
+      const { 
+              concepts, 
+              deleteButton, 
+              deleteButtonText, 
+              conceptContent, 
+              conceptText 
+            } = styles;
+
+      return <View key={uuidv4()} style={concepts}>
               <TouchableOpacity 
                 onPress={() => this.removeConcept(id)}
-                style={styles.deleteButton}
+                style={deleteButton}
                >
-                <Text style={styles.deleteButtonText}>x</Text>
+                <Text style={deleteButtonText}>x</Text>
               </TouchableOpacity>
-              <View style={styles.conceptContent}>
-                <Text style={styles.conceptText}>{text}</Text>
+              <View style={conceptContent}>
+                <Text style={conceptText}>{text}</Text>
               </View>
           </View>
     })
@@ -58,33 +68,48 @@ export default class App extends React.Component {
 
   render() {
     const { text, concepts, error } = this.state;
+    const { 
+            container, 
+            toolbar, 
+            toolbarTextConcept, 
+            toolbarTextBox, 
+            content, 
+            instructions, 
+            instructionsText,
+            errorContainer,
+            errorText,
+            conceptInput,
+            submitButton,
+            submitButtonText,
+            conceptContainer 
+          } = styles;
 
     return (
-      <View style={styles.container}>
-        <View style={styles.toolbar}>
-          <Text style={styles.toolbarTextConcept}>Concept
-            <Text style={styles.toolbarTextBox}>Box</Text>
+      <View style={container}>
+        <View style={toolbar}>
+          <Text style={toolbarTextConcept}>Concept
+            <Text style={toolbarTextBox}>Box</Text>
           </Text>
         </View>
-        <View style={styles.content}>
-          <View style={styles.instructions}>
-            <Text style={styles.instructionsText}>Enter your concept below:</Text>
+        <View style={content}>
+          <View style={instructions}>
+            <Text style={instructionsText}>Enter your concept below:</Text>
           </View>
-          <View style={styles.errorContainer}>
-            <Text style={styles.errorText}>{this.state.error}</Text>
+          <View style={errorContainer}>
+            <Text style={errorText}>{error}</Text>
           </View>
           <TextInput 
-            style={styles.conceptInput}
+            style={conceptInput}
             onChangeText={(text) => this.setState({ text })}
             value={text}
           />
           <TouchableOpacity 
             onPress={this.checkInput}
-            style={styles.submitButton}
+            style={submitButton}
            >
-            <Text style={styles.submitButtonText}>Add Concept</Text>
+            <Text style={submitButtonText}>Add Concept</Text>
           </TouchableOpacity>
-          <View style={styles.conceptContainer}>
+          <View style={conceptContainer}>
             {this.displayConcepts()}
           </View>
         </View>
