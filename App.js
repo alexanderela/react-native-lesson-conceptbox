@@ -3,7 +3,6 @@ import { StyleSheet, TextInput, Text, View, TouchableOpacity } from 'react-nativ
 const uuidv4 = require('uuid/v4');
 // import InputForm from './src/InputForm/InputForm.js';
 // import ConceptContainer from './src/ConceptContainer/ConceptContainer.js';
-// import Card from './src/Card/Card.js';
 
 export default class App extends Component {
   constructor(props) {
