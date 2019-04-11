@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import { StyleSheet, TextInput, Text, View, TouchableOpacity } from 'react-native';
 const uuidv4 = require('uuid/v4');
-// import InputForm from './src/InputForm/InputForm.js';
-// import ConceptContainer from './src/ConceptContainer/ConceptContainer.js';
 
 export default class App extends Component {
   constructor(props) {
@@ -39,21 +37,24 @@ export default class App extends Component {
       const { text, id } = concept
       const { 
               concepts, 
+              conceptContentDeleteWrapper,
+              conceptContent, 
+              conceptText, 
               deleteButton, 
               deleteButtonText, 
-              conceptContent, 
-              conceptText 
             } = styles;
 
       return <View key={uuidv4()} style={concepts}>
-              <TouchableOpacity 
-                onPress={() => this.removeConcept(id)}
-                style={deleteButton}
-               >
-                <Text style={deleteButtonText}>x</Text>
-              </TouchableOpacity>
-              <View style={conceptContent}>
-                <Text style={conceptText}>{text}</Text>
+              <View style={conceptContentDeleteWrapper}>
+                <View style={conceptContent}>
+                  <Text style={conceptText}>{text}</Text>
+                </View>
+                <TouchableOpacity 
+                  onPress={() => this.removeConcept(id)}
+                  style={deleteButton}
+                 >
+                  <Text style={deleteButtonText}>x</Text>
+                </TouchableOpacity>
               </View>
           </View>
     })
@@ -74,7 +75,6 @@ export default class App extends Component {
             toolbarTextConcept, 
             toolbarTextBox, 
             content, 
-            instructions, 
             instructionsText,
             errorContainer,
             errorText,
@@ -92,7 +92,7 @@ export default class App extends Component {
           </Text>
         </View>
         <View style={content}>
-          <View style={instructions}>
+          <View>
             <Text style={instructionsText}>Enter your concept below:</Text>
           </View>
           <View style={errorContainer}>
@@ -119,15 +119,9 @@ export default class App extends Component {
 }
 
 const styles = StyleSheet.create({
-  instructionsText: {
-    color: '#050505',
-    fontSize: 20,
-  },
-  content: {
-    alignItems: 'center',
-    backgroundColor: '#eaeef0',
-    justifyContent: 'flex-start',
-    paddingTop: 80,
+  container: {
+    backgroundColor: '#fff',
+    flex: 1,
   },
   toolbar: {
     alignItems: 'center',
@@ -147,48 +141,15 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'normal',
   },
-  container: {
-    backgroundColor: '#fff',
-    flex: 1,
-  },
-  deleteButtonText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  deleteButton: {
+  content: {
     alignItems: 'center',
-    backgroundColor: '#fff',
-    borderRadius: 30,
-    height: 40,
-    justifyContent: 'center',
-    width: 40,
+    backgroundColor: '#eaeef0',
+    justifyContent: 'flex-start',
+    paddingTop: 80,
   },
-  submitButtonText: {
-    color: '#fff',
-    fontSize: 18,
-  },
-  submitButton: {
-    alignItems: 'center',
-    backgroundColor: '#1b9aaa',
-    borderRadius: 5,
-    height: 50,
-    justifyContent: 'center',
-    marginTop: 30,
-    width: 200,
-  },
-  concepts: {
-    alignItems: 'flex-end',
-    backgroundColor: '#f15432',
-    borderRadius: 10,
-    color: '#fff',
-    height: 100,
-    justifyContent: 'space-between',
-    marginBottom: 20,
-    paddingBottom: 20,    
-    paddingLeft: 20,    
-    paddingRight: 20,    
-    paddingTop: 10,    
-    width: 300,
+  instructionsText: {
+    color: '#050505',
+    fontSize: 20,
   },
   errorContainer: {
     display: 'flex',
@@ -202,23 +163,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     textAlign: 'center',
   },
-  conceptText: {
-    color: '#fff',
-    fontSize: 18,
-  },
-  conceptContent: {
-    alignItems: 'flex-start',
-    display: 'flex',
-    fontSize: 20,
-    height: 30,
-    width: '100%',    
-  },
-  conceptContainer: {
-    height: '100%',
-    marginTop: 30,
-    padding: 5,
-    width: 300,
-  },
   conceptInput: {
     backgroundColor: '#fff',
     borderRadius: 5,
@@ -228,5 +172,69 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingLeft: 10,
     width: 300,
+  },
+  submitButton: {
+    alignItems: 'center',
+    backgroundColor: '#1b9aaa',
+    borderRadius: 5,
+    height: 50,
+    justifyContent: 'center',
+    marginTop: 30,
+    width: 200,
+  },
+  submitButtonText: {
+    color: '#fff',
+    fontSize: 18,
+  },
+  conceptContainer: {
+    height: '100%',
+    marginTop: 30,
+    padding: 5,
+    width: 300,
+  },
+  concepts: {
+    alignItems: 'flex-end',
+    backgroundColor: '#f15432',
+    borderRadius: 10,
+    color: '#fff',
+    height: 100,
+    justifyContent: 'space-between',
+    marginBottom: 20,
+    width: 300,
+  },
+  conceptContentDeleteWrapper: {
+    flexDirection: 'row',
+    height: '100%',
+    width: 300
+  },
+  conceptContent: {
+    alignItems: 'flex-start',
+    fontSize: 20,
+    height: '100%',
+    justifyContent: 'center',
+    paddingBottom: 20,    
+    paddingLeft: 20,    
+    paddingRight: 20,    
+    paddingTop: 20,    
+    width: '80%',    
+  },
+  conceptText: {
+    justifyContent: 'center',
+    color: '#fff',
+    fontSize: 18,
+  },
+  deleteButton: {
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderColor: '#f15432',
+    borderWidth: 1,
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+    height: '100%',
+    justifyContent: 'center',
+    width: '20%',
+  },
+  deleteButtonText: {
+    fontSize: 22,
   },
 });
