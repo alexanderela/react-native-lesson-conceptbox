@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import { StyleSheet, TextInput, Text, View, TouchableOpacity } from 'react-native';
 const uuidv4 = require('uuid/v4');
-// import InputForm from './src/InputForm/InputForm.js';
-// import ConceptContainer from './src/ConceptContainer/ConceptContainer.js';
 
 export default class App extends Component {
   constructor(props) {
@@ -165,12 +163,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     textAlign: 'center',
   },
-  conceptContainer: {
-    height: '100%',
-    marginTop: 30,
-    padding: 5,
-    width: 300,
-  },
   conceptInput: {
     backgroundColor: '#fff',
     borderRadius: 5,
@@ -193,6 +185,12 @@ const styles = StyleSheet.create({
   submitButtonText: {
     color: '#fff',
     fontSize: 18,
+  },
+  conceptContainer: {
+    height: '100%',
+    marginTop: 30,
+    padding: 5,
+    width: 300,
   },
   concepts: {
     alignItems: 'flex-end',
