@@ -4,6 +4,13 @@ ConceptBox is a very simple React Native app designed to create a list of 'conce
 ## Deployed App
 Coming soon...
 
+## Images
+### Main Home Page
+![Main Home Page image](./assets/conceptbox_home.png "Main Home Page")
+
+### Main Home Page with concepts entered
+![Main Home Page image](./assets/conceptbox_concepts_rendered.png "Main Home Page with concepts en entered")
+
 ## Setup
 
 This project was bootstrapped with [Expo CLI](https://docs.expo.io/versions/latest/workflow/expo-cli/).

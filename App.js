@@ -14,12 +14,15 @@ export default class App extends Component {
 
   checkInput = () => {
     const { text } = this.state
+    const trimmedText = text.trim()
 
-    if(text.trim() !== '') {
+    if(trimmedText !== '' && trimmedText.length <= 46) {
       this.setState({ error: '' })
       this.handleSubmit()
-    } else {
+    } else if(trimmedText === '') {
       this.setState({ error: 'Please enter a concept with at least 1 letter.' })
+    } else if(trimmedText.length > 46) {
+      this.setState({ error: 'Please enter 46 or fewer characters.' })
     }
   }
 
@@ -187,6 +190,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   conceptContainer: {
+    alignItems: 'center',
     height: '100%',
     marginTop: 30,
     padding: 5,
