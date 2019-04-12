@@ -187,6 +187,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   conceptContainer: {
+    alignItems: 'center',
     height: '100%',
     marginTop: 30,
     padding: 5,
